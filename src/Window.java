@@ -4,17 +4,16 @@ import java.awt.*;
 public class Window extends JFrame {
     private DrawingPanel drawingPanel;
     private ControlPanel controlPanel;
-    //private JPanel windowPanel;
     public Window() throws HeadlessException {
-        super("Grafika Komputerowa - Rafał Kwiecień");
-        setSize(600,400);
+        super("Poproszę 5.0");
+        setSize(800,600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         drawingPanel = new DrawingPanel();
         controlPanel = new ControlPanel();
         drawingPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        controlPanel.setBorder(BorderFactory.createLineBorder(Color.red));
-        add(drawingPanel, BorderLayout.NORTH);
+        controlPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        add(drawingPanel, BorderLayout.CENTER);
         add(controlPanel, BorderLayout.SOUTH);
     }
 
