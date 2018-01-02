@@ -10,7 +10,6 @@ public class ControlPanel extends JPanel {
     private JTextField sizeInputBox;
     private JList colorList;
     private static String[] colorNames = {"niebieski", "czerwony", "zielony", "żółty", "czarny"};
-    private static Color[] colors = {Color.blue, Color.red, Color.green, Color.yellow, Color.black};
     public ControlPanel() {
         setLayout(new BorderLayout());
         colorAndSizePanel = new JPanel();
@@ -40,7 +39,7 @@ public class ControlPanel extends JPanel {
         colorList = new JList(colorNames);
         colorList.setVisibleRowCount(5);
         colorList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        sizeInputBox = new JTextField("");
+        sizeInputBox = new JTextField("50");
         shapePanel.setBorder(BorderFactory.createLineBorder(Color.black));
         shapeButtonPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         colorAndSizePanel.setBorder(BorderFactory.createLineBorder(Color.black));
