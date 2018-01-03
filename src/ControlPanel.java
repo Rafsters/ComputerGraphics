@@ -6,26 +6,31 @@ import java.awt.event.ActionListener;
 public class ControlPanel extends JPanel {
     private JPanel colorAndSizePanel, shapePanel, shapeButtonPanel;
     private JLabel colorLabel, sizeLabel, shapeLabel;
-    private JButton triangleButton, squareButton, circleButton, rectangleButton;
-    private JTextField sizeInputBox;
+    private JButton squareButton, circleButton, rectangleButton;
+    private JSlider sizeSlider;
     private JList colorList;
-    private static String[] colorNames = {"niebieski", "czerwony", "zielony", "żółty", "czarny"};
+    private static String[] colorNames = {"niebieski", "czerwony", "zielony", "żółty", "biały"};
+
+
     public ControlPanel() {
         setLayout(new BorderLayout());
         colorAndSizePanel = new JPanel();
         shapePanel = new JPanel();
-        colorAndSizePanel.setLayout(new GridLayout(2,2));
+        colorAndSizePanel.setLayout(new GridLayout(2, 2));
         shapePanel.setLayout(new BorderLayout());
         shapeLabel = new JLabel("Kształt", SwingConstants.CENTER);
+        shapeLabel.setFont(new Font("Serif", Font.BOLD, 24));
 
         shapeButtonPanel = new JPanel();
-        shapeButtonPanel.setLayout(new GridLayout(1,4));
+        shapeButtonPanel.setLayout(new GridLayout(1, 3));
 
-        triangleButton = new JButton("Trójkąt");
         squareButton = new JButton("Kwadrat");
+        squareButton.setBorder(BorderFactory.createLineBorder(Color.black));
         circleButton = new JButton("Okrąg");
+        circleButton.setBorder(BorderFactory.createLineBorder(Color.black));
         rectangleButton = new JButton("Prostokąt");
-        shapeButtonPanel.add(triangleButton);
+        rectangleButton.setBorder(BorderFactory.createLineBorder(Color.black));
+
         shapeButtonPanel.add(squareButton);
         shapeButtonPanel.add(circleButton);
         shapeButtonPanel.add(rectangleButton);
@@ -35,20 +40,44 @@ public class ControlPanel extends JPanel {
         add(shapePanel, BorderLayout.EAST);
 
         colorLabel = new JLabel("Kolor", SwingConstants.CENTER);
+        colorLabel.setFont(new Font("Serif", Font.BOLD, 24));
+        colorLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         sizeLabel = new JLabel("Rozmiar", SwingConstants.CENTER);
+        sizeLabel.setFont(new Font("Serif", Font.BOLD, 24));
+        sizeLabel.setBorder(BorderFactory.createLineBorder(Color.black));
         colorList = new JList(colorNames);
+        DefaultListCellRenderer renderer =  (DefaultListCellRenderer)colorList.getCellRenderer();
+        renderer.setHorizontalAlignment(JLabel.CENTER);
+        colorList.setBorder(BorderFactory.createLineBorder(Color.black));
+
         colorList.setVisibleRowCount(5);
         colorList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        sizeInputBox = new JTextField("50");
+        sizeSlider = new JSlider(50, 150, 50);
+        sizeSlider.setBorder(BorderFactory.createLineBorder(Color.black));
+
+        sizeSlider.setBounds(50, 50, 150, 50);
+        sizeSlider.setMajorTickSpacing(25);
+        sizeSlider.setMinorTickSpacing(5);
+        sizeSlider.setPaintTicks(true);
+        sizeSlider.setPaintLabels(true);
         shapePanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        shapeButtonPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        //shapeButtonPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         colorAndSizePanel.setBorder(BorderFactory.createLineBorder(Color.black));
         colorAndSizePanel.add(colorLabel);
         colorAndSizePanel.add(sizeLabel);
         colorAndSizePanel.add(colorList);
-        colorAndSizePanel.add(sizeInputBox);
+        colorAndSizePanel.add(sizeSlider);
+        colorAndSizePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        shapePanel.setBorder(BorderFactory.createLineBorder(Color.black));
         add(colorAndSizePanel, BorderLayout.CENTER);
-        System.out.println("Drawing panel z Control panel klasy: ");
+    }
+
+    public JSlider getSizeSlider() {
+        return sizeSlider;
+    }
+
+    public void setSizeSlider(JSlider sizeSlider) {
+        this.sizeSlider = sizeSlider;
     }
 
     public JPanel getColorAndSizePanel() {
@@ -100,14 +129,6 @@ public class ControlPanel extends JPanel {
         this.shapeLabel = shapeLabel;
     }
 
-    public JButton getTriangleButton() {
-        return triangleButton;
-    }
-
-    public void setTriangleButton(JButton triangleButton) {
-        this.triangleButton = triangleButton;
-    }
-
     public JButton getSquareButton() {
         return squareButton;
     }
@@ -130,14 +151,6 @@ public class ControlPanel extends JPanel {
 
     public void setRectangleButton(JButton rectangleButton) {
         this.rectangleButton = rectangleButton;
-    }
-
-    public JTextField getSizeInputBox() {
-        return sizeInputBox;
-    }
-
-    public void setSizeInputBox(JTextField sizeInputBox) {
-        this.sizeInputBox = sizeInputBox;
     }
 
     public JList getColorList() {
