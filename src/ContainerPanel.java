@@ -59,7 +59,7 @@ public class ContainerPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         int randomXCoordinates = (int) (Math.random() * 600);
-        int randomYCoordinates = (int) (Math.random() * 220);
+        int randomYCoordinates = (int) (Math.random() * 250);
         System.out.println("Kolor: " + selectedColor + " ,Random co-ordinate X: " + randomXCoordinates + " ,Random co-ordinate Y: " + randomYCoordinates);
         Graphics gr = drawingPanel.getGraphics();
         //gr.clearRect(0, 0, 800, 600);
